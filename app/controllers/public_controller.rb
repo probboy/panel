@@ -1,6 +1,6 @@
 class PublicController < ApplicationController
-
-  layout 'public'
+  before_action :confirm_logged_in
+  layout "public"
 
   before_action :setup_navigation
 
@@ -22,5 +22,4 @@ class PublicController < ApplicationController
   def setup_navigation
     @subjects = Subject.visible.sorted
   end
-
 end
