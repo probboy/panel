@@ -1,0 +1,46 @@
+cohorts/index.html.erb
+<%= link_to("<< Back to Menu", admin_path, :class => 'back-link') %>
+<p id="notice"><%= notice %></p>
+
+<h1>Cohorts</h1>
+<% begin %>
+<h3><%= @student.first_name %> <%= @student.last_name %> </h3>
+<%= link_to("Add Cohort For this Student", new_cohort_path(:student_id => @student.id), :class => 'action new') %>
+<% rescue %>
+<% end %>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Begin date</th>
+      <th>End date</th>
+      <th>Is active</th>
+      <th>Comments</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cohorts.each do |cohort| %>
+      <tr>
+        <td><%= cohort.id %></td>
+        <td><%= cohort.name %></td>
+        <td><%= cohort.begin_date %></td>
+        <td><%= cohort.end_date %></td>
+        <td><%= cohort.is_active %></td>
+        <td><%= cohort.comments %></td>
+        <td><%= link_to("View Students", students_path(:cohort_id => cohort.id), :class => 'action show') %></td>
+        <td><%= link_to 'Show', cohort %></td>
+        <td><%= link_to 'Edit', edit_cohort_path(cohort) %></td>
+        <td><%= link_to 'Destroy', cohort_path(cohort), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "View all Cohort", cohorts_path %>
+<%= link_to 'New Cohort', new_cohort_path %>

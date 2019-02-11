@@ -1,0 +1,31 @@
+layouts/public.html.erb
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Administrative Panel<%= " | #{@page_title}" if @page_title %></title>
+    <%= stylesheet_link_tag('application', :media => 'all') %>
+  </head>
+  <body>
+
+    <div id="header">
+      <h1>Administrative Panel</h1>
+    </div>
+
+    <div id="main">
+
+      <div id="navigation">
+        <%= render(:partial => 'layouts/navigation', :locals => { :subjects => @subjects} ) %>
+      </div>
+
+      <div id="content">
+        <%= yield %>
+      </div>
+      <div class="clear"></div>
+
+
+    </div>
+
+
+
+  </body>
+</html>

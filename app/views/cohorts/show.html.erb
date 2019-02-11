@@ -1,0 +1,42 @@
+cohorts/show.html.erb
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @cohort.name %>
+</p>
+
+<p>
+  <strong>Begin date:</strong>
+  <%= @cohort.begin_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @cohort.end_date %>
+</p>
+
+<p>
+  <strong>Is active:</strong>
+  <%= @cohort.is_active %>
+</p>
+
+<p>
+  <strong>Comments:</strong>
+  <%= @cohort.comments %>
+</p>
+
+<p>
+  <strong>Students:<strong>
+  <% @cohort.students.each do |t| %>
+    <%= t.first_name %>
+    <%= t.last_name %>
+  <% end %>  
+</p>
+<% @students.each do |student| %>
+  <% if Enrollment.where(:student_id => @cohort.id , :student_id => student.id).blank? %>
+  <%= link_to "Link Student #{student.id} to Cohort", cohort_student_path(@cohort, student) %><br />
+  <% end %>
+<% end %>
+<%= link_to 'Edit', edit_cohort_path(@cohort) %> |
+<%= link_to 'Back', cohorts_path %>

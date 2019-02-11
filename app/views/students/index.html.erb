@@ -1,0 +1,43 @@
+students/index.html.erb
+<%= link_to("<< Back to Menu", admin_path, :class => 'back-link') %>
+<p id="notice"><%= notice %></p>
+
+<h1>Students</h1>
+<% begin %>
+  <%= link_to("Add New Student", new_student_path(:student_id => @student.id), :class => 'action new') %>
+<% rescue %>
+<% end %>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Is enrolled</th>
+      <th>Comments</th>
+      <th>Cohorts</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.id %></td>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= student.is_enrolled %></td>
+        <td><%= student.comments %></td>
+        <td class="center"><%= student.cohorts.size %></td>
+        <td> <%= link_to("View Cohorts", cohorts_path(:student_id => student.id), :class => 'action show') %></td>
+        <td><%= link_to 'Show', student %></td>
+        <td><%= link_to 'Edit', edit_student_path(student) %></td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Student', new_student_path %>
