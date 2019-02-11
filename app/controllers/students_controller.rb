@@ -17,6 +17,7 @@ class StudentsController < ApplicationController
         @students << e.student
       end
     end
+    @cohort = @students.first.cohorts.first
   end
 
   # GET /students/1
@@ -84,7 +85,7 @@ class StudentsController < ApplicationController
       cohort_id: params[:cohort_id],
     )
 
-    redirect_to cohorts_path
+    redirect_to students_path
   end
 
   private

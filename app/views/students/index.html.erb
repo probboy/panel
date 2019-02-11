@@ -4,9 +4,10 @@ students/index.html.erb
 
 <h1>Students</h1>
 <% begin %>
-  <%= link_to("Add New Student", new_student_path(:student_id => @student.id), :class => 'action new') %>
+<h3><%= @cohort.name %>  </h3>
 <% rescue %>
 <% end %>
+
 <table>
   <thead>
     <tr>
@@ -39,5 +40,5 @@ students/index.html.erb
 </table>
 
 <br>
-
+<%= link_to "View all Students", students_path %>
 <%= link_to 'New Student', new_student_path %>

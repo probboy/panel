@@ -31,7 +31,7 @@ class CohortsController < ApplicationController
       cohort_id: params[:cohort_id],
     )
 
-    redirect_to students_path
+    redirect_to cohorts_path
   end
 
   # GET /cohorts/new
