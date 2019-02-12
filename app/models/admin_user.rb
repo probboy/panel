@@ -37,7 +37,6 @@ class AdminUser < ApplicationRecord
                     :confirmation => true
 
   validate :username_is_allowed
-  validate :no_new_users_on_monday, :on => :create
 
   scope :sorted, lambda { order("last_name ASC, first_name ASC") }
 
@@ -52,12 +51,6 @@ class AdminUser < ApplicationRecord
   def username_is_allowed
     if FORBIDDEN_USERNAMES.include?(username)
       errors.add(:username, "has been restricted from use.")
-    end
-  end
-
-  def no_new_users_on_monday
-    if Time.now.wday == 1
-      errors.add(:base, "No new users on Mondays.")
     end
   end
 end

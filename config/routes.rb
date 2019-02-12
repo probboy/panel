@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :enrollments
   resources :students
   resources :cohorts
-  root :to => "public#index"
+  root :to => "access#login"
 
   get "show/:permalink", :to => "public#show", :as => "public_show"
 
